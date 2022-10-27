@@ -2,9 +2,7 @@
 
 namespace BrewUpStore.Modules.Store.Abstracts;
 
-public interface IStoreOrchestrator
+public interface IIngredientsService
 {
-
     Task<string> AddIngredientAsync(IngredientJson ingredientToCreate);
-    Task<string> CreaOrdineFornitoreAsync(SupplierOrderJson orderToCreate);
 }

@@ -13,8 +13,11 @@ public sealed class CreaOrdineFornitore : Command
     public readonly DataInserimento DataInserimento;
     public readonly DataPrevistaConsegna DataPrevistaConsegna;
 
+    public readonly IEnumerable<OrderRow> Rows;
+
     public CreaOrdineFornitore(OrderId aggregateId, Guid commitId, OrderNumber orderNumber, Fornitore fornitore,
-        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna) : base(aggregateId, commitId)
+        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna, IEnumerable<OrderRow> rows)
+        : base(aggregateId, commitId)
     {
         OrderId = aggregateId;
         OrderNumber = orderNumber;
@@ -23,5 +26,7 @@ public sealed class CreaOrdineFornitore : Command
 
         DataInserimento = dataInserimento;
         DataPrevistaConsegna = dataPrevistaConsegna;
+
+        Rows = rows;
     }
 }

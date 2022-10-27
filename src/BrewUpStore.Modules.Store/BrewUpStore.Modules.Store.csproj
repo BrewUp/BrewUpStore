@@ -22,6 +22,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BrewUpStore.ReadModel\BrewUpStore.ReadModel.csproj" />
+	  <ProjectReference Include="..\BrewUpStore.Shared\BrewUpStore.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

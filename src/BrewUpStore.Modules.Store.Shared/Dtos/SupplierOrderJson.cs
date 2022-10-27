@@ -1,6 +1,6 @@
 ﻿namespace BrewUpStore.Modules.Store.Shared.Dtos;
 
-public class OrdineFornitoreJson
+public class SupplierOrderJson
 {
     public string OrderId { get; set; } = string.Empty;
     public string OrderNumber { get; set; } = string.Empty;
@@ -9,4 +9,6 @@ public class OrdineFornitoreJson
 
     public DateTime DataInserimento { get; set; } = DateTime.UtcNow;
     public DateTime DataPrevistaConsegna { get; set; } = DateTime.MinValue;
+
+    public IEnumerable<SupplierOrderRowsJson> Rows { get; set; } = Enumerable.Empty<SupplierOrderRowsJson>();
 }

@@ -19,7 +19,11 @@ public sealed class StoreModule : IModule
     {
         const string storeTag = "Store";
 
-        endpoints.MapPost("v1/suppliers/orders", StoreEndpoints.HandleCreaOrdineFornitore)
+        endpoints.MapPost("v1/store/ingredients", StoreEndpoints.HandleCreateIngredient)
+            .WithName("CreateIngredient")
+            .WithTags(storeTag);
+
+        endpoints.MapPost("v1/store/orders", StoreEndpoints.HandleCreaOrdineFornitore)
             .WithName("CreaOrdineProduzione")
             .WithTags(storeTag);
 

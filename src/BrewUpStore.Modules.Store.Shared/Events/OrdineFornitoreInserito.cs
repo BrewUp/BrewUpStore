@@ -13,8 +13,11 @@ public sealed class OrdineFornitoreInserito : DomainEvent
     public readonly DataInserimento DataInserimento;
     public readonly DataPrevistaConsegna DataPrevistaConsegna;
 
+    public readonly IEnumerable<OrderRow> Rows;
+
     public OrdineFornitoreInserito(OrderId aggregateId, Guid commitId, OrderNumber orderNumber, Fornitore fornitore,
-        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna) : base(aggregateId, commitId)
+        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna, IEnumerable<OrderRow> rows)
+        : base(aggregateId, commitId)
     {
         OrderId = aggregateId;
         OrderNumber = orderNumber;
@@ -23,5 +26,7 @@ public sealed class OrdineFornitoreInserito : DomainEvent
 
         DataInserimento = dataInserimento;
         DataPrevistaConsegna = dataPrevistaConsegna;
+
+        Rows = rows;
     }
 }

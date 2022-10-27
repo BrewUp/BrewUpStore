@@ -13,20 +13,25 @@ public sealed class OrdineFornitore : AggregateRoot
     private DataInserimento _dataInserimento;
     private DataPrevistaConsegna _dataPrevistaConsegna;
 
+    private IEnumerable<OrderRow> _rows;
+
     protected OrdineFornitore()
     {}
 
     internal static OrdineFornitore CreaOrdineFornitore(OrderId orderId, OrderNumber orderNumber, Fornitore fornitore,
-        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna, Guid correlationId)
+        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna, IEnumerable<OrderRow> rows,
+        Guid correlationId)
     {
         return new OrdineFornitore(orderId, orderNumber, fornitore, dataInserimento, dataPrevistaConsegna,
-            correlationId);
+            rows, correlationId);
     }
 
     private OrdineFornitore(OrderId orderId, OrderNumber orderNumber, Fornitore fornitore,
-        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna, Guid correlationId)
+        DataInserimento dataInserimento, DataPrevistaConsegna dataPrevistaConsegna, IEnumerable<OrderRow> rows,
+        Guid correlationId)
     {
-        RaiseEvent(new OrdineFornitoreInserito(orderId, correlationId, orderNumber, fornitore, dataInserimento, dataPrevistaConsegna));
+        RaiseEvent(new OrdineFornitoreInserito(orderId, correlationId, orderNumber, fornitore, dataInserimento,
+            dataPrevistaConsegna, rows));
     }
 
     private void Apply(OrdineFornitoreInserito @event)
@@ -39,5 +44,7 @@ public sealed class OrdineFornitore : AggregateRoot
 
         _dataInserimento = @event.DataInserimento;
         _dataPrevistaConsegna = @event.DataPrevistaConsegna;
+
+        _rows = @event.Rows;
     }
 }

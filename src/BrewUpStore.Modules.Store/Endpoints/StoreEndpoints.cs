@@ -8,10 +8,24 @@ namespace BrewUpStore.Modules.Store.Endpoints;
 
 public static class StoreEndpoints
 {
-    public static async Task<IResult> HandleCreaOrdineFornitore(IStoreOrchestrator storeOrchestrator,
-        IValidator<OrdineFornitoreJson> validator,
+    public static async Task<IResult> HandleCreateIngredient(IStoreOrchestrator storeOrchestrator,
+        IValidator<IngredientJson> validator,
         ValidationHandler validationHandler,
-        OrdineFornitoreJson body)
+        IngredientJson body)
+    {
+        await validationHandler.ValidateAsync(validator, body);
+        if (!validationHandler.IsValid)
+            return Results.BadRequest(validationHandler.Errors);
+
+        var ingredientId = await storeOrchestrator.AddIngredientAsync(body);
+
+        return Results.Created(new Uri($"v1/store/ingredients/{ingredientId}"), ingredientId);
+    }
+
+    public static async Task<IResult> HandleCreaOrdineFornitore(IStoreOrchestrator storeOrchestrator,
+        IValidator<SupplierOrderJson> validator,
+        ValidationHandler validationHandler,
+        SupplierOrderJson body)
     {
         await validationHandler.ValidateAsync(validator, body);
         if (!validationHandler.IsValid)
@@ -19,6 +33,6 @@ public static class StoreEndpoints
 
         var orderId = await storeOrchestrator.CreaOrdineFornitoreAsync(body);
 
-        return Results.Accepted($"v1/suppliers/orders/{orderId}");
+        return Results.Accepted($"v1/store/orders/{orderId}");
     }
 }

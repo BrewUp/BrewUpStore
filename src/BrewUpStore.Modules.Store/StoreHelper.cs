@@ -20,6 +20,7 @@ public static class StoreHelper
             options.RegisterValidatorsFromAssemblyContaining<OrdineFornitoreValidator>());
 
         services.AddScoped<IStoreOrchestrator, StoreOrchestrator>();
+        services.AddScoped<IIngredientsService, IngredientsService>();
         services.AddScoped<IStoreService, StoreService>();
 
         services.AddScoped<IDomainEventHandlerFactoryAsync, DomainEventHandlerFactoryAsync>();

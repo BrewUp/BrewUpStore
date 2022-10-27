@@ -14,10 +14,14 @@ public sealed class CreaOrdineFornitoreCommandHandler : CommandHandlerAsync<Crea
 
     public override async Task HandleAsync(CreaOrdineFornitore command, CancellationToken cancellationToken = new ())
     {
+        if (cancellationToken.IsCancellationRequested)
+            cancellationToken.ThrowIfCancellationRequested();
+
         try
         {
             var ordineFornitore = OrdineFornitore.CreaOrdineFornitore(command.OrderId, command.OrderNumber,
-                command.Fornitore, command.DataInserimento, command.DataPrevistaConsegna, command.MessageId);
+                command.Fornitore, command.DataInserimento, command.DataPrevistaConsegna, command.Rows,
+                command.MessageId);
 
             await Repository.SaveAsync(ordineFornitore, Guid.NewGuid());
         }

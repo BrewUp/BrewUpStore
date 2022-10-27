@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace BrewUpStore.Modules.Store.Shared.Validators;
 
-public class OrdineFornitoreValidator : AbstractValidator<OrdineFornitoreJson>
+public class OrdineFornitoreValidator : AbstractValidator<SupplierOrderJson>
 {
     public OrdineFornitoreValidator()
     {

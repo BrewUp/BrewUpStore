@@ -20,6 +20,17 @@ public sealed class CreaOrdineFornitoreTest : CommandSpecification<CreaOrdineFor
     private readonly DataInserimento _dataInserimento = new(DateTime.UtcNow);
     private readonly DataPrevistaConsegna _dataPrevistaConsegna = new(DateTime.UtcNow.AddDays(30));
 
+    private readonly IEnumerable<OrderRow> _rows = Enumerable.Empty<OrderRow>();
+
+    public CreaOrdineFornitoreTest()
+    {
+        _rows = _rows.Concat(new List<OrderRow>
+        {
+            new(new RowId(Guid.NewGuid().ToString()), new Ingredient(new IngredientId(Guid.NewGuid().ToString()), new IngredientName("Ingredient 1")), new Quantity(10)),
+            new(new RowId(Guid.NewGuid().ToString()), new Ingredient(new IngredientId(Guid.NewGuid().ToString()), new IngredientName("Ingredient 2")), new Quantity(5))
+        });
+    }
+
     protected override IEnumerable<DomainEvent> Given()
     {
         yield break;
@@ -27,7 +38,8 @@ public sealed class CreaOrdineFornitoreTest : CommandSpecification<CreaOrdineFor
 
     protected override CreaOrdineFornitore When()
     {
-        return new CreaOrdineFornitore(_orderId, _correlationId, _orderNumber, _fornitore, _dataInserimento, _dataPrevistaConsegna);
+        return new CreaOrdineFornitore(_orderId, _correlationId, _orderNumber, _fornitore, _dataInserimento,
+            _dataPrevistaConsegna, _rows);
     }
 
     protected override ICommandHandlerAsync<CreaOrdineFornitore> OnHandler()
@@ -37,6 +49,7 @@ public sealed class CreaOrdineFornitoreTest : CommandSpecification<CreaOrdineFor
 
     protected override IEnumerable<DomainEvent> Expect()
     {
-        yield return new OrdineFornitoreInserito(_orderId, _correlationId, _orderNumber, _fornitore, _dataInserimento, _dataPrevistaConsegna);
+        yield return new OrdineFornitoreInserito(_orderId, _correlationId, _orderNumber, _fornitore, _dataInserimento,
+            _dataPrevistaConsegna, _rows);
     }
 }
