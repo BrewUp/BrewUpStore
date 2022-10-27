@@ -9,23 +9,13 @@ namespace BrewUpStore.Modules.Store.Concretes;
 
 public sealed class StoreOrchestrator : StoreBaseOrchestrator, IStoreOrchestrator
 {
-    private readonly IIngredientsService _ingredientsService;
-    private readonly IStoreService _storeService;
-
     private readonly IServiceBus _serviceBus;
 
     public StoreOrchestrator(ILoggerFactory loggerFactory,
-        IIngredientsService ingredientsService,
-        IStoreService storeService,
         IServiceBus serviceBus) : base(loggerFactory)
     {
-        _ingredientsService = ingredientsService;
-        _storeService = storeService;
         _serviceBus = serviceBus;
     }
-
-    public async Task<string> AddIngredientAsync(IngredientJson ingredientToCreate) =>
-        await _ingredientsService.AddIngredientAsync(ingredientToCreate);
 
     public async Task<string> CreaOrdineFornitoreAsync(SupplierOrderJson orderToCreate)
     {

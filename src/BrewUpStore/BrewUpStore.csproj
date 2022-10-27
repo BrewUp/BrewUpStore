@@ -34,4 +34,8 @@
 	  <ProjectReference Include="..\BrewUpStore.Shared\BrewUpStore.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="BrewUpStore.Tests"/>
+	</ItemGroup>
+
 </Project>

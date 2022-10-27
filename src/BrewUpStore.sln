@@ -23,17 +23,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "60 Modules", "60 Modules", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89DCB662-CAF8-4DE8-BF69-22C66E3AD2F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUpStore.Modules.Store", "BrewUpStore.Modules.Store\BrewUpStore.Modules.Store.csproj", "{85A809F9-D6CC-425C-841F-C9770FF156E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrewUpStore.Modules.Store", "BrewUpStore.Modules.Store\BrewUpStore.Modules.Store.csproj", "{85A809F9-D6CC-425C-841F-C9770FF156E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDb", "MongoDb", "{E285A948-4115-4BA7-915D-CE8E8822E3D1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrewUpStore.ReadModel.MongoDb", "BrewUpStore.ReadModel.MongoDb\BrewUpStore.ReadModel.MongoDb.csproj", "{CB48A482-9676-4334-96A4-8F93BB5C6930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUpStore.Modules.Store.Shared", "BrewUpStore.Modules.Store.Shared\BrewUpStore.Modules.Store.Shared.csproj", "{27713EB9-47CD-41C3-ACBB-4473B745BC96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrewUpStore.Modules.Store.Shared", "BrewUpStore.Modules.Store.Shared\BrewUpStore.Modules.Store.Shared.csproj", "{27713EB9-47CD-41C3-ACBB-4473B745BC96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUpStore.Domain", "BrewUpStore.Domain\BrewUpStore.Domain.csproj", "{50159181-613B-4475-8B9D-2BBEBF5B76CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrewUpStore.Domain", "BrewUpStore.Domain\BrewUpStore.Domain.csproj", "{50159181-613B-4475-8B9D-2BBEBF5B76CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUpStore.Domain.Tests", "BrewUpStore.Domain.Tests\BrewUpStore.Domain.Tests.csproj", "{C8E6F114-B5F9-4E5F-9717-BA97C2F83CA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrewUpStore.Domain.Tests", "BrewUpStore.Domain.Tests\BrewUpStore.Domain.Tests.csproj", "{C8E6F114-B5F9-4E5F-9717-BA97C2F83CA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6C57BE91-BDB3-4C55-B39B-CCF74DDF620A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUpStore.Tests", "BrewUpStore.Tests\BrewUpStore.Tests.csproj", "{576169CF-C610-41BF-8CEF-0FBF9E7D5749}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,10 @@ Global
 		{C8E6F114-B5F9-4E5F-9717-BA97C2F83CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8E6F114-B5F9-4E5F-9717-BA97C2F83CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8E6F114-B5F9-4E5F-9717-BA97C2F83CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{576169CF-C610-41BF-8CEF-0FBF9E7D5749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{576169CF-C610-41BF-8CEF-0FBF9E7D5749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{576169CF-C610-41BF-8CEF-0FBF9E7D5749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{576169CF-C610-41BF-8CEF-0FBF9E7D5749}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +96,8 @@ Global
 		{27713EB9-47CD-41C3-ACBB-4473B745BC96} = {F9F8946C-C4FF-4830-A706-EE3FA542196B}
 		{50159181-613B-4475-8B9D-2BBEBF5B76CC} = {D381B0B2-7A3D-4325-8B1C-2CD8FB22D4EB}
 		{C8E6F114-B5F9-4E5F-9717-BA97C2F83CA0} = {89DCB662-CAF8-4DE8-BF69-22C66E3AD2F2}
+		{6C57BE91-BDB3-4C55-B39B-CCF74DDF620A} = {40F6FBBB-8778-465D-AE60-93BE0FD4A6A0}
+		{576169CF-C610-41BF-8CEF-0FBF9E7D5749} = {6C57BE91-BDB3-4C55-B39B-CCF74DDF620A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC7AB2B1-EF37-4EB0-AA55-A9ECFEE40EB1}

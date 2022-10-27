@@ -4,6 +4,7 @@ using BrewUpStore.Modules.Store.Shared.Dtos;
 using BrewUpStore.ReadModel.Abstracts;
 using BrewUpStore.Shared.Concretes;
 using Microsoft.Extensions.Logging;
+using Ingredient = BrewUpStore.ReadModel.Models.Ingredient;
 
 namespace BrewUpStore.Modules.Store.Concretes;
 
@@ -25,6 +26,24 @@ public sealed class IngredientsService : StoreBaseService, IIngredientsService
             await Persister.InsertAsync(ingredient);
 
             return ingredient.Id;
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<IngredientJson>> GetIngredientsAsync()
+    {
+        try
+        {
+            var ingredients = await Persister.FindAsync<ReadModel.Models.Ingredient>();
+            var ingredientsArray = ingredients as Ingredient[] ?? ingredients.ToArray();
+
+            return ingredientsArray.Any()
+                ? ingredientsArray.Select(i => i.ToJson())
+                : Enumerable.Empty<IngredientJson>();
         }
         catch (Exception ex)
         {
