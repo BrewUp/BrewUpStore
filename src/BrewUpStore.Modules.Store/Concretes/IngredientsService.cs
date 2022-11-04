@@ -21,7 +21,7 @@ public sealed class IngredientsService : StoreBaseService, IIngredientsService
             if (string.IsNullOrEmpty(ingredientToCreate.Id))
                 ingredientToCreate.Id = Guid.NewGuid().ToString();
 
-            var ingredient = ReadModel.Models.Ingredient.CreateIngredient(new IngredientId(ingredientToCreate.Id),
+            var ingredient = Ingredient.CreateIngredient(new IngredientId(ingredientToCreate.Id),
                 new IngredientName(ingredientToCreate.Name));
             await Persister.InsertAsync(ingredient);
 
@@ -38,7 +38,7 @@ public sealed class IngredientsService : StoreBaseService, IIngredientsService
     {
         try
         {
-            var ingredients = await Persister.FindAsync<ReadModel.Models.Ingredient>();
+            var ingredients = await Persister.FindAsync<Ingredient>();
             var ingredientsArray = ingredients as Ingredient[] ?? ingredients.ToArray();
 
             return ingredientsArray.Any()

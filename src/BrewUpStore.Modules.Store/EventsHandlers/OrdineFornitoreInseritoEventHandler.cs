@@ -7,12 +7,12 @@ namespace BrewUpStore.Modules.Store.EventsHandlers;
 
 public sealed class OrdineFornitoreInseritoEventHandler : StoreDomainEventHandler<OrdineFornitoreInserito>
 {
-    private readonly IStoreService _storeService;
+    private readonly IInventoryService _inventoryService;
 
     public OrdineFornitoreInseritoEventHandler(ILoggerFactory loggerFactory,
-        IStoreService storeService) : base(loggerFactory)
+        IInventoryService inventoryService) : base(loggerFactory)
     {
-        _storeService = storeService;
+        _inventoryService = inventoryService;
     }
 
     public override async Task HandleAsync(OrdineFornitoreInserito @event, CancellationToken cancellationToken = new ())
@@ -22,8 +22,10 @@ public sealed class OrdineFornitoreInseritoEventHandler : StoreDomainEventHandle
 
         try
         {
-            await _storeService.CreateSupplierOrderAsync(@event.OrderId, @event.OrderNumber, @event.Fornitore,
-                @event.DataInserimento, @event.DataPrevistaConsegna, @event.Rows);
+            foreach (var row in @event.Rows)
+            {
+                await _inventoryService.UpdateInventoriesAsync(row.Ingredient.IngredientId, row.Quantity);
+            }
         }
         catch (Exception ex)
         {

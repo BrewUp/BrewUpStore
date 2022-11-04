@@ -27,14 +27,6 @@ public sealed class StoreModule : IModule
             .WithName("GetIngredient")
             .WithTags(storeTag);
 
-        endpoints.MapPost("v1/store/orders", StoreEndpoints.HandleCreaOrdineFornitore)
-            .WithName("CreateSupplierOrders")
-            .WithTags(storeTag);
-
-        endpoints.MapGet("v1/store/orders", StoreEndpoints.HandleGetSupplierOrders)
-            .WithName("GetSupplierOrders")
-            .WithTags(storeTag);
-
         return endpoints;
     }
 }

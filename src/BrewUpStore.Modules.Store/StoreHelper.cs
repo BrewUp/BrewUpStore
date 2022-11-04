@@ -4,6 +4,7 @@ using BrewUpStore.Modules.Store.Concretes;
 using BrewUpStore.Modules.Store.EventsHandlers;
 using BrewUpStore.Modules.Store.Shared.Events;
 using BrewUpStore.Modules.Store.Shared.Validators;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Muflone.Factories;
@@ -16,11 +17,13 @@ public static class StoreHelper
     public static IServiceCollection AddStoreModule(this IServiceCollection services)
     {
         services.AddScoped<ValidationHandler>();
-        services.AddFluentValidation(options =>
-            options.RegisterValidatorsFromAssemblyContaining<OrdineFornitoreValidator>());
+
+        services.AddFluentValidationAutoValidation();
+        services.AddValidatorsFromAssemblyContaining<OrdineFornitoreValidator>();
 
         services.AddScoped<IStoreOrchestrator, StoreOrchestrator>();
         services.AddScoped<IIngredientsService, IngredientsService>();
+        services.AddScoped<IInventoryService, InventoryService>();
         services.AddScoped<IStoreService, StoreService>();
 
         services.AddScoped<IDomainEventHandlerFactoryAsync, DomainEventHandlerFactoryAsync>();

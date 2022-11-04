@@ -1,6 +1,4 @@
-﻿using BrewUpStore.Domain.Consumers;
-using BrewUpStore.Modules.Store.Consumers;
-using BrewUpStore.Modules.Store.Shared.Commands;
+﻿using BrewUpStore.Modules.Store.Consumers;
 using BrewUpStore.Modules.Store.Shared.Events;
 using BrewUpStore.Shared.Configuration;
 using BrewUpStore.Shared;
@@ -31,11 +29,10 @@ public sealed class InfrastructureModule : IModule
         var clientId = builder.Configuration["BrewUp:ClientId"];
         var serviceBusConnectionString = builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"];
         var azureBusConfiguration =
-            new AzureServiceBusConfiguration(serviceBusConnectionString, nameof(CreaOrdineFornitore), clientId);
+            new AzureServiceBusConfiguration(serviceBusConnectionString, nameof(OrdineFornitoreInserito), clientId);
 
         var consumers = new List<IConsumer>
         {
-            new CreaOrdineFornitoreConsumer(repository!, azureBusConfiguration with { TopicName = nameof(CreaOrdineFornitore) }, loggerFactory!),
             new OrdineFornitoreInseritoConsumer(domainEventHandlerFactoryAsync!, azureBusConfiguration with { TopicName = nameof(OrdineFornitoreInserito) }, loggerFactory!)
         };
         builder.Services.AddMufloneTransportAzure(
