@@ -17,20 +17,20 @@ public sealed class OrdineFornitoreInseritoEventHandler : StoreDomainEventHandle
 
     public override async Task HandleAsync(OrdineFornitoreInserito @event, CancellationToken cancellationToken = new ())
     {
-        if (cancellationToken.IsCancellationRequested)
+         if (cancellationToken.IsCancellationRequested)
             cancellationToken.ThrowIfCancellationRequested();
 
-        try
-        {
-            foreach (var row in @event.Rows)
-            {
-                await _inventoryService.UpdateInventoriesAsync(row.Ingredient.IngredientId, row.Quantity);
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            throw;
-        }
+         try
+         {
+             foreach (var row in @event.Rows)
+             {
+                 await _inventoryService.UpdateInventoriesAsync(row.Ingredient.IngredientId, row.Quantity);
+             }
+         }
+         catch (Exception ex)
+         {
+             Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+             throw;
+         }
     }
 }
